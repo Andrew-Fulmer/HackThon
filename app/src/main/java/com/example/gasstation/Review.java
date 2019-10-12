@@ -14,5 +14,21 @@ public class Review {
         rSafety = safety;
         rClean = clean;
     }
+
+    public String comment(){
+        return rText;
+    }
+    public boolean[] tags() {
+        return rTags;
+    }
+    public double overall() {
+        return rOverall;
+    }
+    public double safety() {
+        return rSafety;
+    }
+    public double clean() {
+        return rClean;
+    }
 }
 

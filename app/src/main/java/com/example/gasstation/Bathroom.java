@@ -5,17 +5,27 @@ public class Bathroom{
     String name = "";
     int rating = 0;
     LatLng location = new LatLng(0,0);
-    //Review[] reviews = [];
-    String[] stringTags = new String[11]{"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
+    Review[] reviews;
+    String[] stringTags = new String[] {"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
+    String[] comments;
 
 
-    public double rating(){
+
+    public String[] getComments(){
+        for (int i = 0; i < reviews.length; i++){
+            comments[comments.length] = reviews[i].comment();
+        }
+        return comments;
+    }
+
+    public double overall(){
         //take an array of reviews and calc the average rating
         double sum = 0;
         int numRes = 0;
         for (int i = 0; i < reviews.length; i++){
-            if(reviews[i] > 0) {
-                sum += reviews[i].rating;
+            Review r = reviews[i];
+            if(r.overall() > 0) {
+                sum += r.overall();
                 numRes ++;
             }
         }
@@ -26,8 +36,8 @@ public class Bathroom{
         double sum = 0;
         int numRes = 0;
         for (int i = 0; i < reviews.length; i++){
-            if(reviews[i] > 0) {
-                sum += reviews[i].rCleanliness;
+            if(reviews[i].clean() > 0) {
+                sum += reviews[i].clean();
                 numRes ++;
             }
         }
@@ -39,8 +49,8 @@ public class Bathroom{
         double sum = 0;
         int numRes = 0;
         for (int i = 0; i < reviews.length; i++){
-            if(reviews[i] > 0) {
-                sum += reviews[i].rSafety;
+            if(reviews[i].safety() > 0) {
+                sum += reviews[i].safety();
                 numRes ++;
             }
         }
@@ -49,11 +59,11 @@ public class Bathroom{
 
     public String[] topTags(){
         //finds top three tags
-        int[] counts = new int[0,0,0,0,0,0,0,0,0,0,0];
+        int[] counts = new int[] {0,0,0,0,0,0,0,0,0,0,0};
         for(int i = 0; i < reviews.length; i ++){
-
-            for(int j = 0; j< reviews.tags.length; j++){
-                if(r.tags[j]){
+            Review r = reviews[i];
+            for(int j = 0; j< (r.tags()).length; j++){
+                if(r.tags()[j]){
                     counts[j] ++;
                 }
             }
@@ -68,21 +78,26 @@ public class Bathroom{
         int high2 = 0;
 
         for(int k = 0; k < counts.length; k++){
-            if(counts[k] > firstHigh){
+            if(counts[k] > high0){
                 high0 = counts[k];
                 i0 = k;
-            } else if(counts[k] > secHigh){
+            } else if(counts[k] > high1){
                 high1 = counts[k];
                 i1 = k;
-            }else if(counts[k] > thirdHigh){
+            }else if(counts[k] > high2){
                 high2 = counts[k];
                 i2 = k;
             }
 
         }
 
-        String[] topThree = [stringTags[i0], stringTags[i1], stringTags[i2]];
+        String[] topThree = new String[] {stringTags[i0], stringTags[i1], stringTags[i2]};
         return topThree;
+    }
+
+    public void addReview(Review newReview){
+        reviews[reviews.length] = newReview;
+
     }
 
 
