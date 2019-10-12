@@ -11,13 +11,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.model.Marker;
 import java.util.Hashtable;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<Marker,GasStation> gasStations = new ArrayList<Marker,GasStation>();
+    private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +43,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
-
+        mMap.setOnMapLongClickListener((OnMapLongClickListener) this);
         // Add a marker in Sydney and move the camera
 
         LatLng sydney = new LatLng(-34, 151);
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
     @Overide
     public boolean onMarkerClick (Marker marker){
+
         //Search for selected gas station
         GasStation selected = gasStations.get(marker);
         //Display selected Gastation
 
+        return true;
+    }
+
+    public boolean OnMapLongClickListener (LatLng point){
+        //Open up dialog window
+            //Add a location?
+            //if yes get information on location
+        //Make location
         return true;
     }
 }
