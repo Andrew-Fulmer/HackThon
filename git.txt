@@ -1,0 +1,5 @@
+git clone - clones a github repository to your computer
+git status - shows diffrence betwene your repository and whats on github
+git add - adds file to the project
+git commit - commits to local repository
+git push - adds changes to github repository
