@@ -11,21 +11,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.model.Marker;
+import java.util.Hashtable;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener{
 
     private GoogleMap mMap;
-
+    private Hashtable<Marker,GasStation> gasStations = new ArrayList<Marker,GasStation>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                //hello!
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //its 5:09.
     }
 
 
@@ -44,11 +44,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
 
         // Add a marker in Sydney and move the camera
+
         LatLng sydney = new LatLng(-34, 151);
+
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        
-
     }
+    @Overide
+    public boolean onMarkerClick (Marker marker){
+        //Search for selected gas station
+        GasStation selected = gasStations.get(marker);
+        //Display selected Gastation
 
+        return true;
+    }
 }
