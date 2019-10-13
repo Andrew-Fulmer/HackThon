@@ -4,10 +4,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
+=======
+import android.util.Log;
+>>>>>>> ff0216b6ede406796cfbe910a506cbcfccfcd593
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,12 +32,16 @@ import java.util.Hashtable;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
+//<<<<<<< HEAD
+    //private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
 
     //Widgets
-    private EditText mSearchText;
+    //private EditText mSearchText;
 
 
+//=======
+    //private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+//>>>>>>> //ff0216b6ede406796cfbe910a506cbcfccfcd593
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,24 +116,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-    @Overide
+    @Override
     public boolean onMarkerClick (Marker marker){
 
         //Search for selected gas station
-        GasStation selected = gasStations.get(marker);
+        Bathroom selected = bathrooms.get(marker);
         //Display selected Gastation
         startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+
         return true;
     }
-
+    @Override
     public void onMapLongClick (LatLng point){
         //Open up dialog window
+        startActivity(new Intent(MapsActivity.this, AddBRPop.class));
             //Add a location?
             //if yes get information on location
         //Make location
+        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
     }
     public void onSearch(){
-
+    
     }
 
 }
