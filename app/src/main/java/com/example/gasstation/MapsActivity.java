@@ -142,7 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng sydney = new LatLng(35.9097, -79.0460);
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen Gymnasium"));    // I don't need the _
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen Gymnasium"));    // I don't need the _
         float zoomIn = 17.0f;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomIn));
 
@@ -204,8 +204,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Add-Location");
-        builder.setMessage("Do you want to add this location " + strOut + "as a bathroom?");
-
+        builder.setMessage("Do you want to add this location " + strOut + " as a bathroom?");
+            // Move this higher if I keep it
+        //private string m_Text="";
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
             @Override
@@ -225,6 +226,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AlertDialog alert = builder.create();
         alert.show();
+
     }
     public void onSearch(){
 

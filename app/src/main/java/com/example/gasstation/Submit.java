@@ -19,13 +19,6 @@ public class Submit extends Activity {
         //this gets the intent that was passed in when created
         Intent intent = getIntent();
         //gets a value from the intent
-        //you pass the id you made before calling this activity  to get the value
-        String location = intent.getStringExtra("location");
-
-        //This sets header equal to the TextView with the ID Header
-        TextView header = (TextView)findViewById(R.id.Header);
-        //You can now change attributes of that text view
-        header.setText(location);
 
 
         //This code dose display stuff
@@ -39,6 +32,8 @@ public class Submit extends Activity {
 
         //this sets ratings and reviews to the ones that match the IDs
         RatingBar rating = (RatingBar)findViewById(R.id.ratingBar);
+        RatingBar ratingCleanliness = (RatingBar)findViewById(R.id.safetyRatingBarAdjust);
+        RatingBar ratingSafety = (RatingBar)findViewById(R.id.cleanlinessRatingBarAdjust);
         TextView review = (TextView)findViewById(R.id.review);
 
         //Getting ready to go back to maps activity
@@ -46,8 +41,12 @@ public class Submit extends Activity {
         //passing information through
         maps.putExtra("review", review.getText());
         maps.putExtra("rating", rating.getNumStars());
-        maps.putExtra("location", location);
+        maps.putExtra("cleanliness", ratingCleanliness.getNumStars());
+        maps.putExtra("safety", ratingSafety.getNumStars());
+        maps.putExtra("location", );
         //Starts map activity
+        startActivity(maps);
+
         //startActivity(maps);
     }
 }
