@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Add a location?
             //if yes get information on location
         //Make location
-        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+       // startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
     }
     public void onSearch(){
     

@@ -41,13 +41,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
-        <activity android:name="AddBRPop"></activity>
 
-=======
-        <activity android:name=".display"></activity>
->>>>>>> e4d9d8e62696351732e9876161c5e50b502347d6
+        <activity android:name=".AddBRPop"></activity>
+
+
+        <activity android:name=".DisplayLocation"></activity>
+
     </application>
 
 </manifest>

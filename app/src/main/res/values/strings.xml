@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">GasStation</string>
     <string name="title_activity_maps">Map</string>
+    <string name="prompt_add_br">Add New Bathroom Location?</string>
+    <string name="add_br_button">YES</string>
 </resources>
