@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -31,8 +32,8 @@ public class DisplayLocation extends Activity {
 
         locationName.setText(bathroom.name);
         overallRatingBar.setRating((int) (bathroom.overall()));
-        safetyRatingBar.setRating((int) (bathroom.safety()));
-        cleanlinessRatingBar.setRating((int) (bathroom.cleanliness()));
+        safetyRatingBar.setRating((int) (bathroom.getSafety()));
+        cleanlinessRatingBar.setRating((int) (bathroom.getCleanliness()));
         topThreeTags.setText("");
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -50,7 +51,6 @@ public class DisplayLocation extends Activity {
                 startActivity(submit);
             }
         });
-
     }
 
 }

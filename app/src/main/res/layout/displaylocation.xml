@@ -16,22 +16,16 @@
         android:text="Name"
         android:textSize="30sp" />
 
-
     <RatingBar
         android:id="@+id/overallRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
-        android:layout_marginTop="143dp"
-        android:background="#00D81DC6"
         android:clickable="true"
         android:indeterminate="false"
-=======
         android:layout_marginTop="149dp"
         android:background="#008B3E3E"
->>>>>>> 9b944e312aea17a60ff197b415bac4dbf1a18354
         android:numStars="5" />
 
     <TextView
@@ -135,11 +129,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/testScroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TEST!" />
 
             <Button
                 android:id="@+id/writeReview"
@@ -150,17 +139,6 @@
                 android:shadowColor="#00E40808"
                 android:text="Write a review"
                 android:textColor="#000000" />
-
-            <Space
-                android:id="@+id/spaceTest"
-                android:layout_width="match_parent"
-                android:layout_height="407dp" />
-
-            <TextView
-                android:id="@+id/testScroll1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TEST!!" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
