@@ -2,6 +2,7 @@ package com.example.gasstation;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.model.Marker;
 import java.util.Hashtable;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
@@ -57,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Search for selected gas station
         GasStation selected = gasStations.get(marker);
         //Display selected Gastation
-
+        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
         return true;
     }
 
@@ -67,4 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //if yes get information on location
         //Make location
     }
+    public void onSearch(){
+
+    }
+
 }
