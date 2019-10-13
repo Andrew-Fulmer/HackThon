@@ -48,16 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
-//<<<<<<< HEAD
-    //private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
 
-    //Widgets
-    //private EditText mSearchText;
-
-
-//=======
-
-//ff0216b6ede406796cfbe910a506cbcfccfcd593
     private EditText mSearchText;
 
     @Override
@@ -102,7 +93,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -123,18 +113,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String location = locationSearch.getText().toString();
         List<Address>addressList = null;
 
-        if (location != null || !location.equals("")) {
+        if (location != null && !location.equals("")) {
             Geocoder geocoder = new Geocoder(this);
             try {
                 addressList = geocoder.getFromLocationName(location, 1);
 
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            //mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         }
     }
 
@@ -161,8 +151,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Search for selected gas station
         Bathroom selected = bathrooms.get(marker);
-        //Display selected Gastation
-        //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+
+        Intent display = new Intent(MapsActivity.this, DisplayLocation.class);
+        //pass info
+        display.putExtra("bathroom",selected);
+        startActivity(display);
 
         return true;
     }
@@ -183,6 +176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         final String strOut = str;
+
         /*
         String knownName = addresses.get(0).getFeatureName();
         String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
@@ -218,8 +212,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AlertDialog alert = builder.create();
         alert.show();
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 160c6351290e12a51943e205a626edd963b08c06
     }
     public void onSearch(){
     
