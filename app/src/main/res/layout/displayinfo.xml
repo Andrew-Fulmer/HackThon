@@ -4,18 +4,18 @@
 
     <TextView
         android:id="@+id/locationName"
-        android:layout_width="198dp"
-        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="Name"
         android:textSize="30sp" />
-
 
     <RatingBar
         android:id="@+id/overallRatingBar"
@@ -23,15 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
         android:layout_marginTop="143dp"
-        android:background="#00D81DC6"
-        android:clickable="true"
-        android:indeterminate="false"
-=======
-        android:layout_marginTop="149dp"
-        android:background="#008B3E3E"
->>>>>>> 9b944e312aea17a60ff197b415bac4dbf1a18354
         android:numStars="5" />
 
     <TextView
@@ -66,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="-16dp"
         android:layout_marginLeft="-16dp"
-        android:layout_marginTop="231dp"
+        android:layout_marginTop="232dp"
         android:numStars="5"
         android:scaleX="0.5"
         android:scaleY="0.5" />
@@ -78,7 +70,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="214dp"
+        android:layout_marginTop="216dp"
         android:layout_marginEnd="73dp"
         android:layout_marginRight="73dp"
         android:text="Cleanliness:" />
@@ -136,31 +128,11 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/testScroll"
-                android:layout_width="match_parent"
+                android:id="@+id/Review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TEST!" />
+                android:text="This is review one." />
 
-            <Button
-                android:id="@+id/writeReview"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="#99badd"
-                android:shadowColor="#00E40808"
-                android:text="Write a review"
-                android:textColor="#000000" />
-
-            <Space
-                android:id="@+id/spaceTest"
-                android:layout_width="match_parent"
-                android:layout_height="407dp" />
-
-            <TextView
-                android:id="@+id/testScroll1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TEST!!" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
