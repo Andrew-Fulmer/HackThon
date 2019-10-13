@@ -23,6 +23,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="143dp"
+        android:background="#00D81DC6"
+        android:clickable="true"
+        android:indeterminate="false"
         android:numStars="5" />
 
     <TextView
