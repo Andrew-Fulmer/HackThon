@@ -191,7 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Add-Location");
-        builder.setMessage("Do you want to add this location " + strOut + "as a bathroom?");
+        builder.setMessage("Do you want to add this location " + strOut + " as a bathroom?");
             // Move this higher if I keep it
         //private string m_Text="";
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -212,11 +212,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AlertDialog alert = builder.create();
         alert.show();
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 160c6351290e12a51943e205a626edd963b08c06
     }
     public void onSearch(){
     
