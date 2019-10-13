@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +21,7 @@ import java.util.Hashtable;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
+    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,24 +55,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-    @Overide
+    @Override
     public boolean onMarkerClick (Marker marker){
 
         //Search for selected gas station
-        GasStation selected = gasStations.get(marker);
+        Bathroom selected = bathrooms.get(marker);
         //Display selected Gastation
         startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+
         return true;
     }
-
+    @Override
     public void onMapLongClick (LatLng point){
         //Open up dialog window
             //Add a location?
             //if yes get information on location
         //Make location
+        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
     }
     public void onSearch(){
-
+    
     }
 
 }
