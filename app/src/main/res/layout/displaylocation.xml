@@ -23,17 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
+
         android:layout_marginTop="143dp"
         android:background="#00D81DC6"
         android:clickable="true"
         android:indeterminate="false"
-=======
-        android:layout_marginTop="149dp"
-        android:background="#008B3E3E"
->>>>>>> 9b944e312aea17a60ff197b415bac4dbf1a18354
-        android:numStars="5" />
-
+        />
     <TextView
         android:id="@+id/overallRating"
         android:layout_width="wrap_content"
