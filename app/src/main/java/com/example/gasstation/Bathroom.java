@@ -99,12 +99,4 @@ public class Bathroom{
         reviews[reviews.length] = newReview;
 
     }
-
-
-
-
-
-
-
-
 }

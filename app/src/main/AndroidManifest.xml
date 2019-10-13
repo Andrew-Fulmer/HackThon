@@ -44,10 +44,8 @@
 
 
         <activity android:name=".AddBRPop"></activity>
-
-
         <activity android:name=".DisplayLocation"></activity>
-
+        <activity android:name=".Submit"></activity>
     </application>
 
 </manifest>
