@@ -39,8 +39,9 @@
             android:id="@+id/input_search"
             android:background="@null"
             android:hint="Enter Location to Search for Bathrooms"
-
+            android:imeOptions="actionSearch"
             />
+
     </RelativeLayout>
 </RelativeLayout>
 
