@@ -1,8 +1,11 @@
 package com.example.gasstation;
 
 public class Review {
+    // Review Text
     private String rText = "";
+    // Which tags (finite number, in array
     private boolean[] rTags;
+
     private double rOverall = 0;
     private double rSafety = 0;
     private double rClean = 0;
