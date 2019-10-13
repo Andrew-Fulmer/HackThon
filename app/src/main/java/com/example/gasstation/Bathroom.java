@@ -1,15 +1,17 @@
 package com.example.gasstation;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 public class Bathroom{
     String name = "";
     int rating = 0;
     LatLng location = new LatLng(0,0);
-    Review[] reviews;
+    ArrayList<Review> reviews;
     String[] stringTags = new String[] {"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
     String[] comments;
 
-    Bathroom( String inName, int inRating, LatLng inLocation, Review[] inReviews, String[] inStringTags, String[] inComments) {
+    Bathroom(String inName, LatLng inLocation, int inRating, ArrayList<Review> inReviews, String[] inStringTags, String[] inComments) {
         name = inName;
         rating = inRating;
         location = inLocation;
@@ -18,11 +20,17 @@ public class Bathroom{
         comments = inComments;
     }
 
+    Bathroom( String inName, LatLng inLocation) {
+        name = inName;
+        location = inLocation;
+        rating = 0;
+        reviews = new ArrayList<Review>();
+    }
         //Needs ratings, tags, location, name, reviews
 
     public String[] getComments(){
-        for (int i = 0; i < reviews.length; i++){
-            comments[comments.length] = reviews[i].comment();
+        for (int i = 0; i < reviews.size(); i++){
+            comments[comments.length] = reviews.get(i).comment();
         }
         return comments;
     }
@@ -31,8 +39,8 @@ public class Bathroom{
         //take an array of reviews and calc the average rating
         double sum = 0;
         int numRes = 0;
-        for (int i = 0; i < reviews.length; i++){
-            Review r = reviews[i];
+        for (int i = 0; i < reviews.size(); i++){
+            Review r = reviews.get(i);
             if(r.overall() > 0) {
                 sum += r.overall();
                 numRes ++;
@@ -44,9 +52,9 @@ public class Bathroom{
         //calculate cleanlines ratings from all reviews
         double sum = 0;
         int numRes = 0;
-        for (int i = 0; i < reviews.length; i++){
-            if(reviews[i].clean() > 0) {
-                sum += reviews[i].clean();
+        for (int i = 0; i < reviews.size(); i++){
+            if(reviews.get(i).clean() > 0) {
+                sum += reviews.get(i).clean();
                 numRes ++;
             }
         }
@@ -57,9 +65,9 @@ public class Bathroom{
         //calculate safety rating
         double sum = 0;
         int numRes = 0;
-        for (int i = 0; i < reviews.length; i++){
-            if(reviews[i].safety() > 0) {
-                sum += reviews[i].safety();
+        for (int i = 0; i < reviews.size(); i++){
+            if(reviews.get(i).safety() > 0) {
+                sum += reviews.get(i).safety();
                 numRes ++;
             }
         }
@@ -69,8 +77,8 @@ public class Bathroom{
     public String[] topTags(){
         //finds top three tags
         int[] counts = new int[] {0,0,0,0,0,0,0,0,0,0,0};
-        for(int i = 0; i < reviews.length; i ++){
-            Review r = reviews[i];
+        for(int i = 0; i < reviews.size(); i ++){
+            Review r = reviews.get(i);
             for(int j = 0; j< (r.tags()).length; j++){
                 if(r.tags()[j]){
                     counts[j] ++;
@@ -105,7 +113,6 @@ public class Bathroom{
     }
 
     public void addReview(Review newReview){
-        reviews[reviews.length] = newReview;
-
+        reviews.add(newReview);
     }
 }

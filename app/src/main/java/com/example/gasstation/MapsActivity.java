@@ -181,56 +181,63 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapLongClick (final LatLng point){
 
         Geocoder geocoder;
-        List<Address> temp = new ArrayList<>();
         geocoder = new Geocoder(this, Locale.getDefault());
 
+        List<Address> addresses;
+        String str = "";
         try {
-            temp = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+
+            addresses = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+            str = addresses.get(0).getFeatureName().toString();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        final List<Address> addresses = temp;
-
-        /*Other Stuff you can do
-
-        String knownName = addresses.get(0).getFeatureName(); //String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        final String strOut = str;
+        /*
+        String knownName = addresses.get(0).getFeatureName();
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
         String city = addresses.get(0).getLocality();
         String state = addresses.get(0).getAdminArea();
         String country = addresses.get(0).getCountryName();
-        String postalCode = addresses.get(0).getPostalCode(); Only if available else return NULL
+        String postalCode = addresses.get(0).getPostalCode();
         */
+        //final String print = knownName + " : " + address;
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Add-Location");
-        builder.setMessage("Do you want to add this location " + addresses.get(0) + "as a bathroom?");
+        builder.setMessage("Do you want to add this location " + strOut + "as a bathroom?");
 
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mMap.addMarker(new MarkerOptions().position(point).title(addresses.get(0).toString()));
+                Bathroom bathroom = new Bathroom(strOut,point);
+                mMap.addMarker(new MarkerOptions().position(point).title(strOut));
                 dialog.dismiss();
             }
-        });
-
-
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        });builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                // Code that is executed when clicking NO
-
                 dialog.dismiss();
             }
 
         });
-
-
         AlertDialog alert = builder.create();
         alert.show();
+
+
+
+
+
+
+
+
+
+
     }
     public void onSearch(){
     
