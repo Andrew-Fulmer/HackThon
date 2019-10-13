@@ -9,11 +9,9 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 
-<<<<<<< HEAD
+
 import android.view.View;
-=======
-import android.location.Geocoder;
->>>>>>> 37f68d5bbf395e2504be54f80b016bb461ce2d16
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,42 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-//    private void init(){
-//        Log.d(TAG, "init: initializing");
-//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
-//                if(actionID == EditorInfo.IME_ACTION_SEARCH
-//                        || actionId == EditorInfo.IME_ACTION_DONE
-//                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-//                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
-//                    //Execute A Search Method
-//                    geoLocate();
-//                }
-//            }
-//                                              }
-//        );
-//    }
-   /* private void geoLocate(){
-        Log.d(TAG, "geoLocate: geolocating");
-        String searchString = mSearchText.getText().toString();
-        Geocoder geocoder = new Geocoder(MapsActivity.this);
-        List<Address> list = new ArrayList<>();
-        try{
-            geocoder.
-            list = geocoder.getFromLocationName(searchString, 1);
-        }
-        catch (IOException e){
-            Log.e(TAG, "geoLocate: IOException: " + e.getMessage());
-        }
-        if(list.size() > 0) {
-            Address address = list.get(0);
 
-            Log.d(TAG, "geoLocate: found a location: " + address.toString());
-            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
-    */
 
     /**
      * Manipulates the map once available.
@@ -170,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             Address address = addressList.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+            //mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         }
     }
