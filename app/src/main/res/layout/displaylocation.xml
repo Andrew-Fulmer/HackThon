@@ -5,14 +5,9 @@
 
     <TextView
         android:id="@+id/locationName"
-        android:layout_width="198dp"
-        android:layout_height="55dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
         android:layout_marginTop="51dp"
         android:gravity="center_horizontal"
         android:text="Name"
@@ -26,24 +21,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="146dp" />
-
-
-        android:layout_marginTop="143dp"
-        android:background="#00D81DC6"
-        android:clickable="true"
-        android:indeterminate="false"
-        android:layout_marginTop="149dp"
-        android:background="#008B3E3E"
-
-        android:numStars="5" />
-
-        android:id="@+id/overallRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:text="Overall Rating:" />
 
     <TextView
         android:id="@+id/safety"
