@@ -4,7 +4,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.widget.Toast;
+=======
 import android.util.Log;
+>>>>>>> ff0216b6ede406796cfbe910a506cbcfccfcd593
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,23 +22,74 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.model.Marker;
+
+//import com.google.android.gms.location.LocationServices;
+
+import java.io.IOException;
 import java.util.Hashtable;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+//<<<<<<< HEAD
+    //private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
+
+    //Widgets
+    //private EditText mSearchText;
+
+
+//=======
+    //private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+//>>>>>>> //ff0216b6ede406796cfbe910a506cbcfccfcd593
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        // Edit text
+        mSearchText = (EditText) findViewById(R.id.input_search);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
+    private void init(){
+        Log.d(TAG, "init: initializing");
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolear onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
+                if(actionID == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
+                    //Execute A Search Method
+                    geoLocate();
+                }
+            }
+                                              }
+        );
+    }
+    private void geoLocate(){
+        Log.d(TAG, "geoLocate: geolocating");
+        String searchString = mSearchText.getText().toString();
+        Geocoder geocoder = new Geocoder(MapActivity.this);
+        List<Address> list = new ArrayList<>();
+        try{
+            geocoder.
+            list = geocoder.getFromLocationName(searchString, 1);
+        }
+        catch (IOException e){
+            Log.e(TAG, "geoLocate: IOException: " + e.getMessage());
+        }
+        if(list.size() > 0) {
+            Address address = list.get(0);
+
+            Log.d(TAG, "geoLocate: found a location: " + address.toString());
+            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
     /**
      * Manipulates the map once available.
@@ -42,6 +100,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
