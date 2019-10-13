@@ -3,15 +3,18 @@ package com.example.gasstation;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-=======
+
 import android.util.Log;
->>>>>>> ff0216b6ede406796cfbe910a506cbcfccfcd593
+
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,7 +29,9 @@ import com.google.android.gms.maps.model.Marker;
 //import com.google.android.gms.location.LocationServices;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
@@ -40,8 +45,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 //=======
-    //private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
-//>>>>>>> //ff0216b6ede406796cfbe910a506cbcfccfcd593
+    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+//ff0216b6ede406796cfbe910a506cbcfccfcd593
+    private EditText mSearchText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,26 +62,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    private void init(){
-        Log.d(TAG, "init: initializing");
-        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolear onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
-                if(actionID == EditorInfo.IME_ACTION_SEARCH
-                        || actionId == EditorInfo.IME_ACTION_DONE
-                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
-                    //Execute A Search Method
-                    geoLocate();
-                }
-            }
-                                              }
-        );
-    }
-    private void geoLocate(){
+//    private void init(){
+//        Log.d(TAG, "init: initializing");
+//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
+//                if(actionID == EditorInfo.IME_ACTION_SEARCH
+//                        || actionId == EditorInfo.IME_ACTION_DONE
+//                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+//                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
+//                    //Execute A Search Method
+//                    geoLocate();
+//                }
+//            }
+//                                              }
+//        );
+//    }
+   /* private void geoLocate(){
         Log.d(TAG, "geoLocate: geolocating");
         String searchString = mSearchText.getText().toString();
-        Geocoder geocoder = new Geocoder(MapActivity.this);
+        Geocoder geocoder = new Geocoder(MapsActivity.this);
         List<Address> list = new ArrayList<>();
         try{
             geocoder.
@@ -90,6 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+    */
 
     /**
      * Manipulates the map once available.
@@ -129,11 +137,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapLongClick (LatLng point){
         //Open up dialog window
-        startActivity(new Intent(MapsActivity.this, AddBRPop.class));
+        //startActivity(new Intent(MapsActivity.this, AddBRPop.class));
             //Add a location?
             //if yes get information on location
         //Make location
-       // startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+       startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
     }
     public void onSearch(){
     
