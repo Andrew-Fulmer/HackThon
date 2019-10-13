@@ -61,11 +61,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
 
-    public boolean OnMapLongClickListener (LatLng point){
+    public void onMapLongClick (LatLng point){
         //Open up dialog window
             //Add a location?
             //if yes get information on location
         //Make location
-        return true;
     }
 }
