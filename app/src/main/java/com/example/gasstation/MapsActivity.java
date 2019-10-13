@@ -36,9 +36,11 @@ import java.util.Hashtable;
 import java.util.List;
 
 
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
+    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
 //<<<<<<< HEAD
     //private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
 
@@ -47,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 //=======
-    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+
 //ff0216b6ede406796cfbe910a506cbcfccfcd593
     private EditText mSearchText;
 
@@ -132,18 +134,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Search for selected gas station
         Bathroom selected = bathrooms.get(marker);
         //Display selected Gastation
-        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+        //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
 
         return true;
     }
     @Override
     public void onMapLongClick (LatLng point){
         //Open up dialog window
-        //startActivity(new Intent(MapsActivity.this, AddBRPop.class));
+        Intent submit = new Intent(MapsActivity.this, Submit.class);
+        submit.putExtra("location",point.latitude + "  " + point.longitude);
+        startActivity(submit);
             //Add a location?
             //if yes get information on location
         //Make location
-       startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+       //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
     }
     public void onSearch(){
     
