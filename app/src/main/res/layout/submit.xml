@@ -12,11 +12,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="83dp"
         android:layout_marginLeft="83dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="118dp"
         android:background="#00A85555"
         android:numStars="5"
         android:rating="2.0"
         android:stepSize="1.0" />
+
     <TextView
         android:id="@+id/safety"
         android:layout_width="wrap_content"
@@ -87,6 +88,21 @@
 
 
     <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="222dp"
+        android:layout_marginLeft="222dp"
+        android:layout_marginTop="296dp"
+        android:text="CheckBox" />
+
+
+
+    <CheckBox
         android:id="@+id/checkBox6"
         android:layout_width="149dp"
         android:layout_height="wrap_content"
@@ -98,6 +114,7 @@
 
         android:layout_marginTop="296dp"
         android:text="CheckBox" />
+
 
 
     <CheckBox
@@ -160,10 +177,9 @@
         android:layout_marginLeft="87dp"
         android:layout_marginTop="404dp"
         android:text="CheckBox" />
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="335dp"
-        android:text="Busy" />
+
+
+
 
     <CheckBox
         android:id="@+id/checkBox5"
@@ -172,14 +188,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+
         android:layout_marginStart="86dp"
         android:layout_marginLeft="86dp"
         android:layout_marginTop="234dp"
         android:text="CheckBox" />
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="174dp"
-        android:text="Free Parking" />
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -225,6 +240,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
         android:text="Submit" />
+
 
     <CheckBox
         android:id="@+id/checkBox"

@@ -43,19 +43,22 @@ import com.google.android.gms.maps.model.Marker;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<LatLng,Bathroom> bathrooms = new Hashtable<>();
+    private Hashtable<String,Bathroom> bathrooms = new Hashtable<>();
 
     private EditText mSearchText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("Running OnCreate!=========");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
@@ -138,33 +141,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
         mMap.setOnMapLongClickListener((OnMapLongClickListener) this);
 
-        // Add a marker in Sydney and move the camera
+        Intent intent = getIntent();
 
+        try{
+            //Hashtable<String,Bathroom> bathrooms = intent.getParcelableExtra("hash");
+            Review r = intent.getParcelableExtra("submit");
+            Bathroom b = intent.getParcelableExtra("bathroom");
+
+            bathrooms.put(b.location.toString(),b);
+
+            Set<String> keys = bathrooms.keySet();
+            for(String key: keys){
+                mMap.addMarker(new MarkerOptions().position(bathrooms.get(key).location).title(bathrooms.get(key).name));
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        System.out.println("Running OnReady!=========");
         LatLng sydney = new LatLng(35.9097, -79.0460);
-
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen Gymnasium"));    // I don't need the _
         float zoomIn = 17.0f;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomIn));
 
         //mMap.setMyLocationEnabled(true);
         // Could possibly later make the
-        Bathroom bathroom = new Bathroom("First",new LatLng(35.9049,-79.0469));
-        Review review = new Review("This place sucks ", new boolean[]{}, 1, 2, 4);
-        Review review2 = new Review("This place sucks ", new boolean[]{}, 4, 1, 2);
-        bathroom.reviews.add(review);
-        bathroom.reviews.add(review2);
-        bathrooms.put(bathroom.location,bathroom);
-        mMap.addMarker(new MarkerOptions().position(bathroom.location).title(bathroom.name));
+        //Bathroom bathroom = new Bathroom("First",new LatLng(35.9049,-79.0469));
+        //Review review = new Review("This place sucks ", new boolean[]{}, 1, 2, 4);
+       //Review review2 = new Review("This place sucks ", new boolean[]{}, 4, 1, 2);
+       // bathroom.reviews.add(review);
+       // bathroom.reviews.add(review2);
+       // bathrooms.put(bathroom.location.toString(),bathroom);
+       // mMap.addMarker(new MarkerOptions().position(bathroom.location).title(bathroom.name));
     }
     @Override
     public boolean onMarkerClick (Marker marker){
 
         //Search for selected gas station
-        Bathroom selected = bathrooms.get(marker.getPosition());
+        Bathroom selected = bathrooms.get(marker.getPosition().toString());
 
         Intent display = new Intent(MapsActivity.this, DisplayLocation.class);
         //pass info
 
+        //display.putExtra("hash", (Parcelable) bathrooms);
         display.putExtra("bathroom", (Parcelable) selected);
         display.putExtra("bathroom",selected);
 
@@ -212,7 +231,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Bathroom bathroom = new Bathroom(strOut,point);
-                bathrooms.put(point,bathroom);
+                bathrooms.put(point.toString(),bathroom);
                 mMap.addMarker(new MarkerOptions().position(point).title(strOut));
                 dialog.dismiss();
             }
