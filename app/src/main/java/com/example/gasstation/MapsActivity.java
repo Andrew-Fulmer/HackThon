@@ -2,6 +2,7 @@ package com.example.gasstation;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -63,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void onMapLongClick (LatLng point){
         //Open up dialog window
+        startActivity(new Intent(MapsActivity.this, AddBRPop.class));
             //Add a location?
             //if yes get information on location
         //Make location
