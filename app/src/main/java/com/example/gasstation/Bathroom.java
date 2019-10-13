@@ -48,8 +48,8 @@ public class Bathroom{
         }
         return sum / numRes;
     }
-    public double cleanliness(){
-        //calculate cleanlines ratings from all reviews
+    public double getCleanliness(){
+        //calculate cleanliness ratings from all reviews
         double sum = 0;
         int numRes = 0;
         for (int i = 0; i < reviews.size(); i++){
@@ -61,7 +61,7 @@ public class Bathroom{
         return sum / numRes;
     }
 
-    public double safety() {
+    public double getSafety() {
         //calculate safety rating
         double sum = 0;
         int numRes = 0;

@@ -9,11 +9,10 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 
-<<<<<<< HEAD
+
+import android.os.Parcelable;
 import android.view.View;
-=======
-import android.location.Geocoder;
->>>>>>> 37f68d5bbf395e2504be54f80b016bb461ce2d16
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,16 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
-//<<<<<<< HEAD
-    //private Hashtable<Marker,GasStation> gasStations = new Hashtable<>();
 
-    //Widgets
-    //private EditText mSearchText;
-
-
-//=======
-
-//ff0216b6ede406796cfbe910a506cbcfccfcd593
     private EditText mSearchText;
 
     @Override
@@ -103,42 +93,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-//    private void init(){
-//        Log.d(TAG, "init: initializing");
-//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
-//                if(actionID == EditorInfo.IME_ACTION_SEARCH
-//                        || actionId == EditorInfo.IME_ACTION_DONE
-//                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-//                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
-//                    //Execute A Search Method
-//                    geoLocate();
-//                }
-//            }
-//                                              }
-//        );
-//    }
-   /* private void geoLocate(){
-        Log.d(TAG, "geoLocate: geolocating");
-        String searchString = mSearchText.getText().toString();
-        Geocoder geocoder = new Geocoder(MapsActivity.this);
-        List<Address> list = new ArrayList<>();
-        try{
-            geocoder.
-            list = geocoder.getFromLocationName(searchString, 1);
-        }
-        catch (IOException e){
-            Log.e(TAG, "geoLocate: IOException: " + e.getMessage());
-        }
-        if(list.size() > 0) {
-            Address address = list.get(0);
-
-            Log.d(TAG, "geoLocate: found a location: " + address.toString());
-            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
-    */
 
     /**
      * Manipulates the map once available.
@@ -160,18 +114,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String location = locationSearch.getText().toString();
         List<Address>addressList = null;
 
-        if (location != null || !location.equals("")) {
+        if (location != null && !location.equals("")) {
             Geocoder geocoder = new Geocoder(this);
             try {
                 addressList = geocoder.getFromLocationName(location, 1);
 
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         }
     }
 
@@ -198,8 +152,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Search for selected gas station
         Bathroom selected = bathrooms.get(marker);
-        //Display selected Gastation
-        //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+
+        Intent display = new Intent(MapsActivity.this, DisplayLocation.class);
+        //pass info
+        display.putExtra("bathroom", (Parcelable) selected);
+        startActivity(display);
 
         return true;
     }
@@ -220,6 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         final String strOut = str;
+
         /*
         String knownName = addresses.get(0).getFeatureName();
         String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
@@ -254,19 +212,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         AlertDialog alert = builder.create();
         alert.show();
-
-
-
-
-
-
-
-
-
-
     }
     public void onSearch(){
-    
+
     }
 
 }
