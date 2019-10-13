@@ -50,7 +50,7 @@ import java.util.Locale;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
-    private Hashtable<Marker,Bathroom> bathrooms = new Hashtable<>();
+    private Hashtable<LatLng,Bathroom> bathrooms = new Hashtable<>();
 
     private EditText mSearchText;
 
@@ -61,7 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
 
-        try{
+        /*try{
             String location = intent.getStringExtra("location");
             String review = intent.getStringExtra("review");
             String rating = intent.getStringExtra("rating");
@@ -85,7 +85,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }catch(Exception  e){
 
-        }
+        }*/
+
 
         // Edit text
         mSearchText = (EditText) findViewById(R.id.editText);
@@ -147,13 +148,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //mMap.setMyLocationEnabled(true);
         // Could possibly later make the
-
+        Bathroom bathroom = new Bathroom("First",new LatLng(35.9049,-79.0469));
+        Review review = new Review("This place sucks ", new boolean[]{}, 1, 2, 4);
+        Review review2 = new Review("This place sucks ", new boolean[]{}, 4, 1, 2);
+        bathroom.reviews.add(review);
+        bathroom.reviews.add(review2);
+        bathrooms.put(bathroom.location,bathroom);
+        mMap.addMarker(new MarkerOptions().position(bathroom.location).title(bathroom.name));
     }
     @Override
     public boolean onMarkerClick (Marker marker){
 
         //Search for selected gas station
-        Bathroom selected = bathrooms.get(marker);
+        Bathroom selected = bathrooms.get(marker.getPosition());
 
         Intent display = new Intent(MapsActivity.this, DisplayLocation.class);
         //pass info
@@ -204,6 +211,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Bathroom bathroom = new Bathroom(strOut,point);
+                bathrooms.put(point,bathroom);
                 mMap.addMarker(new MarkerOptions().position(point).title(strOut));
                 dialog.dismiss();
             }

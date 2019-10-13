@@ -1,4 +1,5 @@
 package com.example.gasstation;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,7 +13,7 @@ public class Bathroom implements Parcelable {
     LatLng location = new LatLng(0,0);
     ArrayList<Review> reviews;
     String[] stringTags = new String[] {"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
-    String[] comments;
+    String[] comments = new String[]{};
 
     Bathroom(String inName, LatLng inLocation, int inRating, ArrayList<Review> inReviews, String[] inStringTags, String[] inComments) {
         name = inName;
@@ -24,6 +25,7 @@ public class Bathroom implements Parcelable {
     }
 
     Bathroom( String inName, LatLng inLocation) {
+        System.out.println("Constructed");
         name = inName;
         location = inLocation;
         rating = 0;
@@ -35,6 +37,7 @@ public class Bathroom implements Parcelable {
         name = in.readString();
         rating = in.readInt();
         location = in.readParcelable(LatLng.class.getClassLoader());
+        reviews = in.createTypedArrayList(Review.CREATOR);
         stringTags = in.createStringArray();
         comments = in.createStringArray();
     }
@@ -59,6 +62,7 @@ public class Bathroom implements Parcelable {
     }
 
     public double overall(){
+        System.out.println(reviews.size());
         //take an array of reviews and calc the average rating
         double sum = 0;
         int numRes = 0;
@@ -149,6 +153,7 @@ public class Bathroom implements Parcelable {
         dest.writeString(name);
         dest.writeInt(rating);
         dest.writeParcelable(location, flags);
+        dest.writeTypedList(reviews);
         dest.writeStringArray(stringTags);
         dest.writeStringArray(comments);
     }

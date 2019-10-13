@@ -13,6 +13,7 @@
         android:layout_marginStart="83dp"
         android:layout_marginLeft="83dp"
         android:layout_marginTop="88dp"
+        android:background="#00A85555"
         android:numStars="5"
         android:rating="2.0"
         android:stepSize="1.0" />
