@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 
+import android.view.View;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -87,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Edit text
-        mSearchText = (EditText) findViewById(R.id.input_search);
+        mSearchText = (EditText) findViewById(R.id.editText);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -141,8 +142,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
 
+    // Found online...
+    // Should update map with search result after search button is pressed
 
+    // JAY LOOK AT THIS
+    // Is it searching for what we want? We want it to search a city and find bathrooms in that city
+    public void onMapSearch(View view) {
+        EditText locationSearch = (EditText) findViewById(R.id.editText);
+        String location = locationSearch.getText().toString();
+        List<Address>addressList = null;
 
+        if (location != null || !location.equals("")) {
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                addressList = geocoder.getFromLocationName(location, 1);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Address address = addressList.get(0);
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -154,13 +177,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng sydney = new LatLng(35.9097, -79.0460);
 
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen_Gymnasium"));    // I don't need the _
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen Gymnasium"));    // I don't need the _
         float zoomIn = 17.0f;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomIn));
 
-
-
         //mMap.setMyLocationEnabled(true);
+        // Could possibly later make the
+
     }
     @Override
     public boolean onMarkerClick (Marker marker){
