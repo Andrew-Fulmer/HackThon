@@ -12,7 +12,7 @@ public class Bathroom implements Parcelable {
     int rating = 0;
     LatLng location = new LatLng(0,0);
     ArrayList<Review> reviews;
-    String[] stringTags = new String[] {"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
+    String[] stringTags = new String[] {"Well Lit", "Feminine Products Available", "Busy","Broken Locks", "Multiple Stalls", "Free Parking", "Clogged Toilets", "Vending Machines", "Clean", "Dirty"};
     String[] comments = new String[]{};
 
     Bathroom(String inName, LatLng inLocation, int inRating, ArrayList<Review> inReviews, String[] inStringTags, String[] inComments) {
@@ -103,7 +103,7 @@ public class Bathroom implements Parcelable {
 
     public String[] topTags(){
         //finds top three tags
-        int[] counts = new int[] {0,0,0,0,0,0,0,0,0,0,0};
+        int[] counts = new int[] {0,0,0,0,0,0,0,0,0,0};
         for(int i = 0; i < reviews.size(); i ++){
             Review r = reviews.get(i);
             for(int j = 0; j< (r.tags()).length; j++){
@@ -113,13 +113,13 @@ public class Bathroom implements Parcelable {
             }
         }
 
-        int i0= 0;
-        int i1 = 0;
-        int i2 = 0;
+        int i0= -1;
+        int i1 = -1;
+        int i2 = -1;
 
-        int high0 = 0;
-        int high1 = 0;
-        int high2 = 0;
+        int high0 = -1;
+        int high1 = -1;
+        int high2 = -1;
 
         for(int k = 0; k < counts.length; k++){
             if(counts[k] > high0){
