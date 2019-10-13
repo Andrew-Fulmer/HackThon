@@ -2,12 +2,17 @@ package com.example.gasstation;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 
+import android.location.Geocoder;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,7 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
+import java.util.Locale;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
@@ -147,6 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
         mMap.setOnMapLongClickListener((OnMapLongClickListener) this);
+
         // Add a marker in Sydney and move the camera
 
         LatLng sydney = new LatLng(-34, 151);
@@ -165,19 +171,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
     @Override
-    public void onMapLongClick (LatLng point){
-        //Before switching to new activity need to make Intent
-        // constructor takes(ThisClass.this,ClassYouWantToGoTo.class)
-        Intent submit = new Intent(MapsActivity.this, Submit.class);
-        //if you want to pass values to the new activity use theintent.putExtra("your id","the value")
-        submit.putExtra("location",Math.round(point.latitude) + ":" + Math.round(point.longitude));
-        //Starts the new activity
-        startActivity(submit);
+    public void onMapLongClick (final LatLng point){
 
-            //Add a location?
-            //if yes get information on location
-        //Make location
-       //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+        Geocoder geocoder;
+        List<Address> temp = new ArrayList<>();
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            temp = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final List<Address> addresses = temp;
+
+        /*Other Stuff you can do
+
+        String knownName = addresses.get(0).getFeatureName(); //String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode(); Only if available else return NULL
+        */
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Add-Location");
+        builder.setMessage("Do you want to add this location " + addresses.get(0) + "as a bathroom?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mMap.addMarker(new MarkerOptions().position(point).title(addresses.get(0).toString()));
+                dialog.dismiss();
+            }
+        });
+
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Code that is executed when clicking NO
+
+                dialog.dismiss();
+            }
+
+        });
+
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
     public void onSearch(){
     
