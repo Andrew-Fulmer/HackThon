@@ -12,8 +12,6 @@ import android.os.Bundle;
 
 import android.view.View;
 
-import android.location.Geocoder;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
