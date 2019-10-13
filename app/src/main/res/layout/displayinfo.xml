@@ -24,7 +24,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="143dp"
-        android:numStars="5" />
+        android:numStars="5"
+        android:progressTint="#ffff8800"/>
 
     <TextView
         android:id="@+id/overallRating"

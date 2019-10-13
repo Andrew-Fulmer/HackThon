@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/locationName"
@@ -13,6 +14,7 @@
         android:layout_marginStart="104dp"
         android:layout_marginLeft="104dp"
         android:layout_marginTop="51dp"
+        android:gravity="center_horizontal"
         android:text="Name"
         android:textSize="30sp" />
 
@@ -23,18 +25,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
+        android:layout_marginTop="146dp" />
+
+
         android:layout_marginTop="143dp"
         android:background="#00D81DC6"
         android:clickable="true"
         android:indeterminate="false"
-=======
         android:layout_marginTop="149dp"
         android:background="#008B3E3E"
->>>>>>> 9b944e312aea17a60ff197b415bac4dbf1a18354
+
         android:numStars="5" />
 
-    <TextView
         android:id="@+id/overallRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,7 +135,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/testScroll"
