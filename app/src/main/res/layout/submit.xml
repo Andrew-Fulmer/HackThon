@@ -202,4 +202,8 @@ android:layout_width="match_parent" android:layout_height="match_parent">
     android:text="Dirty" />
 
 
+<<<<<<< HEAD
 </RelativeLayout>
+=======
+</RelativeLayout>
+>>>>>>> 908f2ad0530bf47b2b15cb32fbb4d854197850bd

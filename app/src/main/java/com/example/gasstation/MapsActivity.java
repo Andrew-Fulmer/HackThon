@@ -148,13 +148,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //mMap.setMyLocationEnabled(true);
         // Could possibly later make the
-        Bathroom bathroom = new Bathroom("First",new LatLng(35.9049,-79.0469));
-        Review review = new Review("This place sucks ", new boolean[]{}, 1, 2, 4);
-        Review review2 = new Review("This place sucks ", new boolean[]{}, 4, 1, 2);
+        boolean[] tags0 = new boolean[] {false,false,false,false,true,false,false,false,false,false};
+        boolean[] tags1 = new boolean[] {false,false,true,false,false,false,false,false,true,false};
+        boolean[] tags2 = new boolean[] {false,true,false,false,true,false,false,true,true,false};
+
+
+        Bathroom bathroom = new Bathroom("Kenan Stadium",new LatLng(35.9049,-79.0469));
+        Review review = new Review("The toilet is squeeky clean ", tags0, 4, 4, 5);
+        Review review2 = new Review("It even has poo pourri! ", tags0, 5, 4, 5);
+        Review review3 = new Review("I'm a lousy duke fan! ", new boolean[]{}, 2, 1, 4);
         bathroom.reviews.add(review);
         bathroom.reviews.add(review2);
+        bathroom.reviews.add(review3);
         bathrooms.put(bathroom.location,bathroom);
         mMap.addMarker(new MarkerOptions().position(bathroom.location).title(bathroom.name));
+
+        Bathroom bathroom1 = new Bathroom("Student Stores",new LatLng(35.909720,-79.048610));
+        Review areview = new Review("The bathroom is great for hiding textbooks in my jacket", tags1, 5, 2, 2);
+        Review areview2 = new Review("The floors are always slippery!!!", tags1, 4, 1, 2);
+        bathroom1.reviews.add(areview);
+        bathroom1.reviews.add(areview2);
+        bathrooms.put(bathroom1.location,bathroom1);
+        mMap.addMarker(new MarkerOptions().position(bathroom1.location).title(bathroom1.name));
+
+        Bathroom bathroom2 = new Bathroom("Frank Porter Graham Student Union",new LatLng(35.910000,-79.047580));
+        Review breview = new Review("The bathroom is great for hiding textbooks in my jacket", tags2, 5, 5, 3);
+        Review breview2 = new Review("It's so big! so many stalls!", tags2, 4, 5, 4);
+        bathroom2.reviews.add(breview);
+        bathroom2.reviews.add(breview2);
+        bathrooms.put(bathroom2.location,bathroom2);
+        mMap.addMarker(new MarkerOptions().position(bathroom2.location).title(bathroom2.name));
+
     }
     @Override
     public boolean onMarkerClick (Marker marker){

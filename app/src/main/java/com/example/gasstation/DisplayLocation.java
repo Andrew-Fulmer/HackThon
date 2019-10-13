@@ -34,12 +34,13 @@ public class DisplayLocation extends Activity {
         overallRatingBar.setRating((int) (bathroom.overall()));
         safetyRatingBar.setRating((int) (bathroom.getSafety()));
         cleanlinessRatingBar.setRating((int) (bathroom.getCleanliness()));
+<<<<<<< HEAD
+
+=======
+>>>>>>> 908f2ad0530bf47b2b15cb32fbb4d854197850bd
 
 
-        overallRatingBar.setRating((int)(bathroom.overall()));
-        safetyRatingBar.setRating((int)(bathroom.getSafety()));
-        cleanlinessRatingBar.setRating((int)(bathroom.getCleanliness()));
-
+<<<<<<< HEAD
 
         //displays the top three tags
         String theThree = "";
@@ -47,6 +48,9 @@ public class DisplayLocation extends Activity {
             theThree = theThree + bathroom.topTags()[i] + "    ";
         }
         topThreeTags.setText(theThree);
+=======
+        topThreeTags.setText("");
+>>>>>>> 908f2ad0530bf47b2b15cb32fbb4d854197850bd
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
