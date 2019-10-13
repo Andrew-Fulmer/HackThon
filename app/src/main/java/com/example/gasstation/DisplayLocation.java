@@ -27,9 +27,9 @@ public class DisplayLocation extends Activity {
         System.out.println(bathroom.reviews.size());
 
         locationName.setText(bathroom.name);
-        overallRatingBar.setNumStars((int)(bathroom.overall()));
-        safetyRatingBar.setNumStars((int)(bathroom.safety()));
-        cleanlinessRatingBar.setNumStars((int)(bathroom.cleanliness()));
+        overallRatingBar.setRating((int)(bathroom.overall()));
+        safetyRatingBar.setRating((int)(bathroom.safety()));
+        cleanlinessRatingBar.setRating((int)(bathroom.cleanliness()));
         topThreeTags.setText("");
 
         DisplayMetrics dm = new DisplayMetrics();
