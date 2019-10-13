@@ -19,15 +19,15 @@
 
     <CheckBox
         android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="220dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="174dp"
-        android:text="CheckBox" />
+        android:layout_marginStart="83dp"
+        android:layout_marginLeft="83dp"
+        android:layout_marginTop="386dp"
+        android:text="Vending Machines" />
 
     <CheckBox
         android:id="@+id/checkBox3"
@@ -38,12 +38,12 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="220dp"
         android:layout_marginLeft="220dp"
-        android:layout_marginTop="222dp"
-        android:text="CheckBox" />
+        android:layout_marginTop="236dp"
+        android:text="Broken Locks" />
 
     <CheckBox
         android:id="@+id/checkBox6"
-        android:layout_width="wrap_content"
+        android:layout_width="149dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="222dp"
-        android:text="CheckBox" />
+        android:text="Feminine Products Available" />
 
     <CheckBox
         android:id="@+id/checkBox7"
@@ -63,7 +63,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="278dp"
-        android:text="CheckBox" />
+        android:text="Well-Lit" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -75,7 +75,7 @@
         android:layout_marginStart="220dp"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="281dp"
-        android:text="CheckBox" />
+        android:text="Smelly" />
 
     <CheckBox
         android:id="@+id/checkBox9"
@@ -87,7 +87,7 @@
         android:layout_marginStart="220dp"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="336dp"
-        android:text="CheckBox" />
+        android:text="Dirty" />
 
     <CheckBox
         android:id="@+id/checkBox8"
@@ -99,7 +99,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="335dp"
-        android:text="CheckBox" />
+        android:text="Busy" />
 
     <CheckBox
         android:id="@+id/checkBox5"
@@ -111,7 +111,7 @@
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="174dp"
-        android:text="CheckBox" />
+        android:text="Free Parking" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -136,7 +136,7 @@
         android:layout_marginTop="456dp"
         android:layout_marginEnd="57dp"
         android:layout_marginRight="57dp"
-        android:hint="hint" />
+        android:hint="Please share your experience!" />
 
     <TextView
         android:id="@+id/Header"
@@ -150,12 +150,36 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
-        android:text="Button" />
+        android:text="Submit" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="178dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginRight="105dp"
+        android:text="Clogged" />
+
+    <CheckBox
+        android:id="@+id/checkBox10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginBottom="312dp"
+        android:text="Multiple Stalls" />
 
 </RelativeLayout>

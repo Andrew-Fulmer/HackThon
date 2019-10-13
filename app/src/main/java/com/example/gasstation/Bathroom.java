@@ -1,9 +1,12 @@
 package com.example.gasstation;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-public class Bathroom{
+public class Bathroom implements Parcelable {
     String name = "";
     int rating = 0;
     LatLng location = new LatLng(0,0);
@@ -27,6 +30,26 @@ public class Bathroom{
         reviews = new ArrayList<Review>();
     }
         //Needs ratings, tags, location, name, reviews
+
+    protected Bathroom(Parcel in) {
+        name = in.readString();
+        rating = in.readInt();
+        location = in.readParcelable(LatLng.class.getClassLoader());
+        stringTags = in.createStringArray();
+        comments = in.createStringArray();
+    }
+
+    public static final Creator<Bathroom> CREATOR = new Creator<Bathroom>() {
+        @Override
+        public Bathroom createFromParcel(Parcel in) {
+            return new Bathroom(in);
+        }
+
+        @Override
+        public Bathroom[] newArray(int size) {
+            return new Bathroom[size];
+        }
+    };
 
     public String[] getComments(){
         for (int i = 0; i < reviews.size(); i++){
@@ -114,5 +137,19 @@ public class Bathroom{
 
     public void addReview(Review newReview){
         reviews.add(newReview);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(rating);
+        dest.writeParcelable(location, flags);
+        dest.writeStringArray(stringTags);
+        dest.writeStringArray(comments);
     }
 }
