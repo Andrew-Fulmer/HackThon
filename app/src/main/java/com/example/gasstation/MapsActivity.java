@@ -68,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapLongClick (LatLng point){
         //Open up dialog window
+        startActivity(new Intent(MapsActivity.this, AddBRPop.class));
             //Add a location?
             //if yes get information on location
         //Make location
