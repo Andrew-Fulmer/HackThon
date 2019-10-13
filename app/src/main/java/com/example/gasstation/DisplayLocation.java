@@ -1,9 +1,12 @@
 package com.example.gasstation;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -11,12 +14,12 @@ import org.w3c.dom.Text;
 
 public class DisplayLocation extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.displaylocation);
 
         Intent intent = getIntent();
-        Bathroom bathroom = intent.getParcelableExtra("bathroom");
+        final Bathroom bathroom = intent.getParcelableExtra("bathroom");
 
         TextView locationName = (TextView) findViewById(R.id.locationName);
         RatingBar overallRatingBar = (RatingBar) findViewById(R.id.overallRatingBar);
@@ -27,9 +30,9 @@ public class DisplayLocation extends Activity {
         System.out.println(bathroom.reviews.size());
 
         locationName.setText(bathroom.name);
-        overallRatingBar.setRating((int)(bathroom.overall()));
-        safetyRatingBar.setRating((int)(bathroom.safety()));
-        cleanlinessRatingBar.setRating((int)(bathroom.cleanliness()));
+        overallRatingBar.setRating((int) (bathroom.overall()));
+        safetyRatingBar.setRating((int) (bathroom.safety()));
+        cleanlinessRatingBar.setRating((int) (bathroom.cleanliness()));
         topThreeTags.setText("");
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -37,8 +40,17 @@ public class DisplayLocation extends Activity {
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout(width,height);
+        getWindow().setLayout(width, height);
 
+        Button button = (Button) findViewById(R.id.writeReview);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent submit = new Intent(DisplayLocation.this,Submit.class);
+                submit.putExtra("bathroom",bathroom);
+                startActivity(submit);
+            }
+        });
 
     }
+
 }
