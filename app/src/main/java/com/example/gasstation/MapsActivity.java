@@ -2,13 +2,21 @@ package com.example.gasstation;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 
+<<<<<<< HEAD
 import android.view.View;
+=======
+import android.location.Geocoder;
+>>>>>>> 37f68d5bbf395e2504be54f80b016bb461ce2d16
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,7 +43,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
+import java.util.Locale;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
@@ -196,19 +204,66 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
     @Override
-    public void onMapLongClick (LatLng point){
-        //Before switching to new activity need to make Intent
-        // constructor takes(ThisClass.this,ClassYouWantToGoTo.class)
-        Intent submit = new Intent(MapsActivity.this, Submit.class);
-        //if you want to pass values to the new activity use theintent.putExtra("your id","the value")
-        submit.putExtra("location",Math.round(point.latitude) + ":" + Math.round(point.longitude));
-        //Starts the new activity
-        startActivity(submit);
+    public void onMapLongClick (final LatLng point){
 
-            //Add a location?
-            //if yes get information on location
-        //Make location
-       //startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
+        Geocoder geocoder;
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        List<Address> addresses;
+        String str = "";
+        try {
+
+            addresses = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+            str = addresses.get(0).getFeatureName().toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final String strOut = str;
+        /*
+        String knownName = addresses.get(0).getFeatureName();
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode();
+        */
+        //final String print = knownName + " : " + address;
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Add-Location");
+        builder.setMessage("Do you want to add this location " + strOut + "as a bathroom?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Bathroom bathroom = new Bathroom(strOut,point);
+                mMap.addMarker(new MarkerOptions().position(point).title(strOut));
+                dialog.dismiss();
+            }
+        });builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+
+
+
+
+
+
+
+
+
     }
     public void onSearch(){
     
