@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.model.Marker;
 import java.util.Hashtable;
 
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, OnMarkerClickListener, OnMapLongClickListener{
 
     private GoogleMap mMap;
@@ -40,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -58,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Search for selected gas station
         GasStation selected = gasStations.get(marker);
         //Display selected Gastation
-
+        startActivity(new Intent(MapsActivity.this,DisplayLocation.class));
         return true;
     }
 
@@ -69,4 +71,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //if yes get information on location
         //Make location
     }
+    public void onSearch(){
+
+    }
+
 }
