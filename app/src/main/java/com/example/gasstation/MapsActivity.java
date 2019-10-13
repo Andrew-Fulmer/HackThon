@@ -149,12 +149,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
         mMap.setOnMapLongClickListener((OnMapLongClickListener) this);
+
         // Add a marker in Sydney and move the camera
 
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(35.9097, -79.0460);
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Woollen_Gymnasium"));    // I don't need the _
+        float zoomIn = 17.0f;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomIn));
+
+
+
+        //mMap.setMyLocationEnabled(true);
     }
     @Override
     public boolean onMarkerClick (Marker marker){

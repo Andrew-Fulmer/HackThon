@@ -9,7 +9,16 @@ public class Bathroom{
     String[] stringTags = new String[] {"Free Parking", "Clean", "Multiple Stalls","Feminine Products Available", "Well-Lit", "Busy", "Vending Machines", "Broken Locks", "Smelly", "Dirty", "Clogged"};
     String[] comments;
 
+    Bathroom( String inName, int inRating, LatLng inLocation, Review[] inReviews, String[] inStringTags, String[] inComments) {
+        name = inName;
+        rating = inRating;
+        location = inLocation;
+        reviews = inReviews;
+        stringTags = inStringTags;
+        comments = inComments;
+    }
 
+        //Needs ratings, tags, location, name, reviews
 
     public String[] getComments(){
         for (int i = 0; i < reviews.length; i++){
