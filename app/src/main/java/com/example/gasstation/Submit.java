@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -42,6 +43,20 @@ public class Submit extends Activity {
         final RatingBar ratingCleanliness = (RatingBar)findViewById(R.id.safetyRatingBarAdjust);
         final RatingBar ratingSafety = (RatingBar)findViewById(R.id.cleanlinessRatingBarAdjust);
         final TextView review = (TextView)findViewById(R.id.review);
+        final CheckBox tag0 = (CheckBox)findViewById(R.id.checkBox);
+        final CheckBox tag1 = (CheckBox)findViewById(R.id.checkBox2);
+        final CheckBox tag2 = (CheckBox)findViewById(R.id.checkBox3);
+        final CheckBox tag3 = (CheckBox)findViewById(R.id.checkBox4);
+        final CheckBox tag4 = (CheckBox)findViewById(R.id.checkBox5);
+        final CheckBox tag5 = (CheckBox)findViewById(R.id.checkBox6);
+        final CheckBox tag6 = (CheckBox)findViewById(R.id.checkBox7);
+        final CheckBox tag7 = (CheckBox)findViewById(R.id.checkBox8);
+        final CheckBox tag8 = (CheckBox)findViewById(R.id.checkBox9);
+        final CheckBox tag9 = (CheckBox)findViewById(R.id.checkBox10);
+        final CheckBox[] tags = new CheckBox[]{tag0, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9};
+
+
+
 
 
 
@@ -54,6 +69,7 @@ public class Submit extends Activity {
                 bathroom.reviews.add(r);
                 final Bathroom b = bathroom;
                 Intent maps = new Intent(Submit.this, MapsActivity.class);
+
                 maps.putExtra("submit", (Parcelable) r);
                 maps.putExtra("bathroom", b);
                 //submit.putExtra("hash", (Parcelable) bathrooms);
@@ -61,6 +77,10 @@ public class Submit extends Activity {
                 //maps.putExtra("cleanliness", ratingCleanliness.getNumStars());
                 //maps.putExtra("safety", ratingSafety.getNumStars());
                 System.out.println("Running Submit!=========");
+
+                for(int i = 0; i < tags.length; i++){
+                    maps.putExtra("tag " + i, tags[i].isChecked());
+                }
                 startActivity(maps);
             }
         });

@@ -20,11 +20,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
 
+
         android:clickable="true"
         android:indeterminate="false"
         android:layout_marginTop="149dp"
         android:background="#008B3E3E"
         android:numStars="5" />
+
 
     <TextView
         android:id="@+id/overallRating"
@@ -34,6 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="121dp"
         android:text="Overall Rating:" />
+
 
 
     <TextView

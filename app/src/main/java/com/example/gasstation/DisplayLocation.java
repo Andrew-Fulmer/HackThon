@@ -42,7 +42,16 @@ public class DisplayLocation extends Activity {
         cleanlinessRatingBar.setRating((int) (bathroom.getCleanliness()));
 
 
-        topThreeTags.setText("");
+
+        //displays the top three tags
+        String theThree = "";
+        for(int i = 0; i < 3; i++){
+            theThree = theThree + bathroom.topTags()[i] + "    ";
+        }
+        topThreeTags.setText(theThree);
+
+
+
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
