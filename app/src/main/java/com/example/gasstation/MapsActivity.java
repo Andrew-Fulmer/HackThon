@@ -10,6 +10,9 @@ import android.location.Geocoder;
 import android.os.Bundle;
 
 
+
+import android.os.Parcelable;
+
 import android.view.View;
 
 import android.view.KeyEvent;
@@ -161,7 +164,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent display = new Intent(MapsActivity.this, DisplayLocation.class);
         //pass info
+
+        display.putExtra("bathroom", (Parcelable) selected);
         display.putExtra("bathroom",selected);
+
         startActivity(display);
 
         return true;
@@ -221,7 +227,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         alert.show();
     }
     public void onSearch(){
-    
+
     }
 
 }
