@@ -56,6 +56,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        Intent intent = getIntent();
+
+        try{
+            String location = intent.getStringExtra("location");
+            String review = intent.getStringExtra("review");
+            String rating = intent.getStringExtra("rating");
+
+            float lat = 0;
+            float lon = 0;
+            String str = "";
+            for(int i = 0; i < location.length(); i ++){
+                if(location.charAt(i) == ':'){
+                    lat = Float.parseFloat(str);
+                    str = "";
+                }else if(i == location.length() -1){
+                    lon = Float.parseFloat(str);
+                }
+                str = str + location.charAt(i);
+            }
+
+            LatLng place = new LatLng(lat,lon);
+
+            //bathrooms.add(new Bathroom());
+
+        }catch(Exception  e){
+
+        }
+
         // Edit text
         mSearchText = (EditText) findViewById(R.id.input_search);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -138,10 +166,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     @Override
     public void onMapLongClick (LatLng point){
-        //Open up dialog window
+        //Before switching to new activity need to make Intent
+        // constructor takes(ThisClass.this,ClassYouWantToGoTo.class)
         Intent submit = new Intent(MapsActivity.this, Submit.class);
-        submit.putExtra("location",point.latitude + "  " + point.longitude);
+        //if you want to pass values to the new activity use theintent.putExtra("your id","the value")
+        submit.putExtra("location",Math.round(point.latitude) + ":" + Math.round(point.longitude));
+        //Starts the new activity
         startActivity(submit);
+
             //Add a location?
             //if yes get information on location
         //Make location
